@@ -34,6 +34,7 @@ Information about the application.
 
 # Customization
 Modify the dataset: Replace the `udemy_course_data.csv` file with your dataset.
+
 Adjust styling: Modify the custom CSS in the `main()` function to change the appearance.
 
 ## Built with
