@@ -10,7 +10,7 @@ from about_page import about_page
 from home_page import home_page
 
 # Load spaCy model 
-nlp = spacy.load('en_core_web_md')
+nlp = en_core_web_sm.load()
 
 # Load DataFrame
 
