@@ -1,58 +1,59 @@
 import streamlit as st
 import streamlit.components.v1 as stc
+import matplotlib.pyplot as plt
+import seaborn as sns
+from wordcloud import WordCloud
 
-def about_page():
-    st.title("About Course Recommendation App")
 
-    stc.html(
-        """
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <style>
-                body {
-                    font-family: 'Arial', sans-serif;
-                    background-color: #f8f8f8;
-                    color: #333;
-                    margin: 0;
-                    padding: 0;
-                }
+@st.cache_data
+def about_page(df):
+    
+    st.title("Here are some visualisations about our dataset")
+    st.write(f"Number of Rows: {df.shape[0]}")
+    st.markdown("### Dataset Overview")
+    st.write(f"Number of Columns: {df.shape[1]}")
+    st.write("Data Types:")
+    st.write(df.dtypes)
+    st.write("Summary Statistics:")
+    st.write(df.describe())
 
-                .about-container {
-                    max-width: 800px;
-                    margin: auto;
-                    padding: 20px;
-                    background-color: #fff;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                    border-radius: 10px;
-                }
+        # Data Visualizations
 
-                h1 {
-                    color: #3498db;
-                }
+    st.markdown("### Data Visualizations")
+        # Distribution of Course Prices
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    plt.figure(figsize=(10, 6))
+    st.subheader("Distribution of Course Prices")
+    sns.histplot(df['price'], bins=20, kde=True)
+    st.pyplot()
 
-                h2 {
-                    color: #333;
-                }
+        # Word Cloud for Course Titles
+    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(' '.join(df['course_title']))
+    st.subheader("Word Cloud for Course Titles")
+    plt.figure(figsize=(10, 6))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis('off')
+    st.pyplot()
 
-                p {
-                    margin: 10px 0;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="about-container">
-                <h1>Welcome to the Course Recommendation App!</h1>
-                <p>This app uses natural language processing (NLP) techniques to recommend Udemy courses based on their titles.</p>
-                <h2>How it works:</h2>
-                <p>1. Enter a search term related to the course you're interested in.</p>
-                <p>2. The app will use NLP to find courses with similar titles and recommend them to you.</p>
-                <p>Feel free to explore and discover new courses!</p>
-            </div>
-        </body>
-        </html>
-        """,
-        height=500,
-    )
+        # Distribution of Subscribers
+    st.subheader("Distribution of Subscribers")
+    plt.figure(figsize=(10, 6))
+    sns.histplot(df['num_subscribers'], bins=20, kde=True)
+    st.pyplot()
+
+        # Price Distribution by Category
+    st.subheader("Price Distribution by Subject")
+    plt.figure(figsize=(12, 8))
+    sns.boxplot(x='subject', y='price', data=df)
+    plt.xticks(rotation=45, ha='right')
+    st.pyplot()
+
+        # Course Duration Distribution
+    st.subheader("Course Duration Distribution")
+    plt.figure(figsize=(10, 6))
+    sns.histplot(df['content_duration'], bins=20, kde=True)
+    st.pyplot()
+
+        # Display a sample of the dataset
+    st.markdown("### Sample of the Dataset")
+    st.dataframe(df.head(10))

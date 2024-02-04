@@ -7,14 +7,17 @@ import seaborn as sns
 from wordcloud import WordCloud
 
 from about_page import about_page
+from home_page import home_page
 
 # Load spaCy model 
 nlp = spacy.load('en_core_web_md')
 
 # Load DataFrame
+
 df = pd.read_csv("data/udemy_course_data.csv")
 
 # Recommendation function incorporating spaCy word embeddings
+@st.cache_data
 def get_recommendation_nlp(title, df, num_of_rec=10):
     # Process the search term using spaCy
     search_doc = nlp(title)
@@ -35,7 +38,7 @@ def get_recommendation_nlp(title, df, num_of_rec=10):
 def main():
     # Set page title and favicon
     st.set_page_config(
-        page_title="Course Recommendation App",
+        
         page_icon=":mortar_board:",
         layout="wide"
     )
@@ -68,62 +71,13 @@ def main():
         </style>
     """, unsafe_allow_html=True)
 
-    st.title("Course Recommendation App")
+ 
 
-    menu = ["Home", "Recommend", "About"]
+    menu = ["Home", "Recommend", "Visualisations"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Home":
-        st.subheader("Home")
-
-        # Dataset Overview
-        st.markdown("### Dataset Overview")
-        st.write(f"Number of Rows: {df.shape[0]}")
-        st.write(f"Number of Columns: {df.shape[1]}")
-        st.write("Data Types:")
-        st.write(df.dtypes)
-        st.write("Summary Statistics:")
-        st.write(df.describe())
-
-        # Data Visualizations
-        st.markdown("### Data Visualizations")
-
-        # Distribution of Course Prices
-        st.subheader("Distribution of Course Prices")
-        plt.figure(figsize=(10, 6))
-        sns.histplot(df['price'], bins=20, kde=True)
-        st.pyplot()
-
-        # Word Cloud for Course Titles
-        st.subheader("Word Cloud for Course Titles")
-        wordcloud = WordCloud(width=800, height=400, background_color='white').generate(' '.join(df['course_title']))
-        plt.figure(figsize=(10, 6))
-        plt.imshow(wordcloud, interpolation='bilinear')
-        plt.axis('off')
-        st.pyplot()
-
-        # Distribution of Subscribers
-        st.subheader("Distribution of Subscribers")
-        plt.figure(figsize=(10, 6))
-        sns.histplot(df['num_subscribers'], bins=20, kde=True)
-        st.pyplot()
-
-        # Price Distribution by Category
-        st.subheader("Price Distribution by Subject")
-        plt.figure(figsize=(12, 8))
-        sns.boxplot(x='subject', y='price', data=df)
-        plt.xticks(rotation=45, ha='right')
-        st.pyplot()
-
-        # Course Duration Distribution
-        st.subheader("Course Duration Distribution")
-        plt.figure(figsize=(10, 6))
-        sns.histplot(df['content_duration'], bins=20, kde=True)
-        st.pyplot()
-
-        # Display a sample of the dataset
-        st.markdown("### Sample of the Dataset")
-        st.dataframe(df.head(10))
+        home_page()
 
     elif choice == "Recommend":
         st.subheader("Recommend Courses")
@@ -160,9 +114,9 @@ def main():
                 st.warning("Please enter a search term.")
 
 
-    elif choice == "About":
-        st.subheader("About")
-        about_page()
+    elif choice == "Visualisations":
+        
+        about_page(df)
 
 if __name__ == '__main__':
     main()
