@@ -5,7 +5,7 @@ import streamlit.components.v1 as stc
 import matplotlib.pyplot as plt
 import seaborn as sns
 from wordcloud import WordCloud
-
+import en_core_web_sm
 from about_page import about_page
 from home_page import home_page
 
