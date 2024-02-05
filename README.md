@@ -9,7 +9,8 @@ This Streamlit web application recommends Udemy courses based on the similarity 
 Make sure you have the required Python packages installed:
 
 ```bash
-pip install streamlit pandas spacy matplotlib seaborn wordcloud
+pip install streamlit pandas spacy matplotlib seaborn wordcloud streamlit-components streamlit-reveal-slides
+python -m spacy download en_core_web_lg
 ```
 
 # Installation
