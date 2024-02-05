@@ -1,108 +1,130 @@
 # presentation.py
 
 import streamlit as st
-import reveal_slides as rs
 import streamlit.components.v1 as components
+import reveal_slides as rs
 
-# presentation.py
 
 def presentation_page():
     detailed_content_with_animations = r"""
-    # MLOps for Udemy Courses Recommendation System
+    # Udemy Courses Recommendation System and MLOps
+    ---
+    #### Udemy Courses Recommendation System
 
-    ## Introduction
-
-    - **Objective:** Enhancing the Udemy Courses Recommendation System using MLOps.
-    - **Agenda:** 
-        - Overview of the Recommendation System.
-        - Role of MLOps in improving performance.
+    - **Objective:** Enhancing the user experience on Udemy.
+    - **Implementation:**
+        - **NLP Approaches:**
+            - Utilized cosine similarity for initial exploration.
+            - Experimented with smaller versions of spaCy en_core_web models.
+            - Found spaCy Large to provide superior performance.
+            - Adopted spaCy Large model for robust course recommendations, leveraging word embeddings to enhance similarity assessments.
 
     ---
 
-    ## Deployment Frameworks
+    ## MLOps for Optimization
+
+    #### Introduction to MLOps
+
+    - **Objective:** Improving the Udemy Courses Recommendation System.
+    - **Agenda:** 
+        - Overview of MLOps in the context of recommendation systems.
+        - Key components and their roles.
+
+    ---
+
+    ### Deployment Frameworks
 
     - **Streamlit:** 
         - Interactive web-based deployment.
-        - Easy integration with Python scripts.
-        - User-friendly interface for recommendations.
-        - ![Streamlit](./images/streamlit.gif)  # Update the path accordingly
-
+        - Provides a Python-centric approach for creating engaging interfaces.
+        - Enables the easy integration of data visualization and recommendation algorithms.
+       
     - **Docker:**
         - Containerization for portability.
-        - Ensures consistent deployment across environments.
-        - ![Docker](./images/docker.gif)  # Update the path accordingly
+        - Ensures a consistent deployment environment across different systems.
+        - Facilitates seamless integration with other technologies in the MLOps pipeline.
+       
 
-    - **Cloud Platforms (e.g., Heroku, AWS, Streamlit Cloud):**
+    - **Cloud Platforms (e.g., Heroku, AWS):**
         - Scalable solutions for cloud deployment.
-        - Enables efficient resource management.
-        - ![Cloud](./images/streamlit_cloud.gif)  # Update the path accordingly
+        - Supports efficient resource management, ensuring optimal system performance.
+        - Enables elastic scalability to handle varying user loads.
+        
 
     ---
 
-    ## Monitoring Frameworks
+    ### Monitoring Frameworks
 
     - **MLflow:**
         - Experiment tracking and model management.
         - Streamlines the machine learning lifecycle.
-        - ![MLflow](./images/mlflow.gif)  # Update the path accordingly
+        - Enables reproducibility by tracking experiment parameters and results.
+        
 
     - **Custom Logging and Alerting:**
         - Implementation for real-time monitoring.
         - Customized alerts for system performance.
-        - ![Logging](./images/logging.gif)  # Update the path accordingly
+        - Monitors key system metrics and user interactions.
+        
 
     ---
 
-    ## Challenges and Best Practices
+    ### Challenges and Best Practices
 
-    ### Challenges
+    #### Challenges
 
     - **Dynamic Data and Model Updates:**
         - Adapting to changes in course data and models.
-        - ![Dynamic Updates](./images/dynamic_updates.gif)  # Update the path accordingly
+        - Implemented a dynamic update mechanism to seamlessly incorporate changes.
+        - Utilized versioned models and data for compatibility.
+    
 
     - **Real-time Recommendations:**
         - Ensuring timely and relevant course suggestions.
-        - ![Real-time](./images/real_time.gif)  # Update the path accordingly
+        - Implemented real-time recommendation logic to provide instant suggestions.
+        - Optimized algorithms to handle large datasets efficiently.
+
 
     - **Scalability:**
         - Meeting demand as the user base grows.
-        - ![Scalability](./images/scalability.gif)  # Update the path accordingly
+        - Implemented scalable solutions for handling increased user traffic.
+        - Utilized cloud platforms for elastic scalability.
+    
 
-    ### Best Practices
+    #### Best Practices
 
     - **Continuous Integration/Continuous Deployment (CI/CD):**
         - Seamless updates for enhanced functionality.
-        - ![CI/CD](./images/cicd.gif)  # Update the path accordingly
+        - Implemented CI/CD pipelines to automate testing and deployment.
+        - Ensured quick and reliable delivery of new features.
+     
 
     - **Versioned Models and Data:**
         - Handling changes while maintaining compatibility.
-        - ![Versioning](./images/versioning.gif)  # Update the path accordingly
+        - Adopted versioning for models and data to manage changes effectively.
+        - Ensured backward compatibility for a smooth user experience.
+
 
     - **Automated Testing and Validation:**
         - Ensuring the accuracy and effectiveness of recommendations.
-        - ![Testing](./images/testing.gif)  # Update the path accordingly
+        - Implemented automated testing for recommendation algorithms.
+        - Validated recommendations against user interactions for continuous improvement.
+      
 
     ---
 
-    ## Conclusion
-
-    - **Recap of Key MLOps Considerations:**
-        - Deployment and monitoring strategies.
-        - Addressing challenges and implementing best practices.
-        - ![Recap](./images/recap.gif)  # Update the path accordingly
-
+    ### Conclusion
     - **Ongoing Improvements:**
         - Continuous refinement of the Recommendation System.
-        - ![Improvements](./images/improvements.gif)  # Update the path accordingly
+        - Prioritizing user feedback for feature enhancements.
+        - Exploring opportunities for further optimization.
+        
 
     - **Future Enhancements:**
         - Exploring opportunities for further optimization.
-        - ![Future](./images/future.gif)  # Update the path accordingly
-
+        - Investigating emerging technologies to enhance recommendation algorithms.
     """
 
-    st.title("MLOps Presentation")
-    components.html(rs.slides(detailed_content_with_animations), width=900, height=900, key="reveal-slides")
-
+    st.title("Udemy Courses Recommendation System and MLOps Presentation")
+    st.markdown(rs.slides(detailed_content_with_animations), unsafe_allow_html=True)
 
