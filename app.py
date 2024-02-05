@@ -1,16 +1,14 @@
 import streamlit as st
 import pandas as pd
 import spacy
-import streamlit.components.v1 as stc
-import matplotlib.pyplot as plt
-import seaborn as sns
-from wordcloud import WordCloud
-import en_core_web_sm
+# import en_core_web_sm
 from about_page import about_page
 from home_page import home_page
+from presentation import presentation_page
 
 # Load spaCy model 
-nlp = en_core_web_sm.load()
+
+nlp = spacy.load("en_core_web_lg")
 
 # Load DataFrame
 
@@ -20,7 +18,8 @@ df = pd.read_csv("data/udemy_course_data.csv")
 @st.cache_data
 def get_recommendation_nlp(title, df, num_of_rec=10):
     # Process the search term using spaCy
-    search_doc = nlp(title)
+    search_tokens = [token.lemma_ for token in nlp(title)]
+    search_doc = nlp(" ".join(search_tokens))
 
     # Calculate similarity using word embeddings
     sim_scores = df['course_title'].apply(lambda doc: search_doc.similarity(nlp(doc)))
@@ -73,7 +72,7 @@ def main():
 
  
 
-    menu = ["Home", "Recommend", "Visualisations"]
+    menu = ["Home", "Recommend", "Visualisations","presentation"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Home":
@@ -109,7 +108,12 @@ def main():
                                     f'<a href="{row["url"]}" style="color: #ff6600; font-weight: bold;">Link to Course</a>'
                                     f'</div>', unsafe_allow_html=True)
 
-                    
+                        similar_course_pair = ("Complete React JS web developer with ES6 - Build 10 projects", "Quick learning jQuery web development")
+                        dissimilar_course_pair = ("Ultimate Investment Banking Course", "Cooking Basics")
+                        
+                        similarity_score_similar = result[result['course_title'].isin(similar_course_pair)]['similarity_score'].values
+                        similarity_score_dissimilar = result[result['course_title'].isin(dissimilar_course_pair)]['similarity_score'].values
+                        
             else:
                 st.warning("Please enter a search term.")
 
@@ -117,6 +121,7 @@ def main():
     elif choice == "Visualisations":
         
         about_page(df)
-
+    elif choice == "presentation":
+        presentation_page()
 if __name__ == '__main__':
     main()

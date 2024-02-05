@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from wordcloud import WordCloud
 
-
 @st.cache_data
 def about_page(df):
     

@@ -1,6 +1,6 @@
 streamlit
 pandas
-en_core_web_sm
+en_core_web_md
 matplotlib
 seaborn
 wordcloud
