@@ -53,7 +53,7 @@ def presentation_page():
 
     ---
 
-    ### Monitoring Frameworks
+    ### Monitoring framworks
 
     - **MLflow:**
         - Experiment tracking and model management.
