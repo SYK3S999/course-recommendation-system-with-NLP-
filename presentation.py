@@ -32,6 +32,20 @@ def presentation_page():
 
     ---
 
+    #### Introduction to MLOps
+    - **Definition:**
+        - MLOps, or Machine Learning Operations, is an approach to managing machine learning projects at scale.
+        - It enhances the collaboration between development, operational, and data science teams, resulting in faster model deployment, optimized team productivity, reduction in risk and cost, and continuous model monitoring in production.
+    
+    ---
+
+    #### Introduction to MLOps
+    - **Importance:**
+        - MLOps is critical to systematically and simultaneously manage the release of new ML models with application code and data changes.
+        - It aims to solve problems such as model reproducibility, automation, quality, and governance.
+        - organizations can ensure that their machine learning models are robust, reliable, and deliver value to the business.
+    ---
+
     ### Deployment Frameworks
 
     - **Streamlit:** 
@@ -53,7 +67,7 @@ def presentation_page():
 
     ---
 
-    ### Monitoring framworks
+    ### Monitoring Framworks
 
     - **MLflow:**
         - Experiment tracking and model management.
@@ -66,6 +80,14 @@ def presentation_page():
         - Customized alerts for system performance.
         - Monitors key system metrics and user interactions.
         
+    ---
+
+    ### Monitoring Frameworks
+
+    - **Comet ML:**
+        - Comet ML is a platform for tracking, comparing, explaining, and optimizing machine learning models and experiments. You can use it with any machine learning library.
+    - **Weights & Biases:**
+        - Weights & Biases is an ML platform for experiment tracking, data and model versioning, hyperparameter optimization, and model management.
 
     ---
 
